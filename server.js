@@ -20,9 +20,9 @@ let tasks = [
 
 // 1. Main Web Interface Route
 app.get('/', (req, res) => {
-    const taskItems = tasks.map(t =>
-        <li><strong>#${t.id}</strong>: ${t.title} <em>[${t.status}]</em></li>
-    ).join('');
+    const taskItems = tasks
+        .map(t => <li><strong>#${t.id}</strong>: ${t.title} <em>[${t.status}]</em></li>)
+        .join('');
 
     res.send(`
     <!DOCTYPE html>
@@ -72,6 +72,7 @@ app.get('/', (req, res) => {
             <h1>TaskFlow Cloud System <span class="badge">${APP_ENV}</span></h1>
             <p><strong>System Administrator:</strong> ${STUDENT_OWNER}</p>
             <p><strong>Server Timestamp:</strong> ${new Date().toISOString()}</p>
+            <hr>
 
             <h3>Add New Deployment Task</h3>
             <form method="POST" action="/tasks">
@@ -115,5 +116,5 @@ app.get('/api/tasks', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(TaskFlow Cloud System running on port ${PORT});
+    console.log(`TaskFlow server running on port ${PORT}`);
 });
